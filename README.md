@@ -3,6 +3,8 @@ SpringMVC + MyBatis + Maven 的一个自动生成框架
 
 先上第一版。一个简单的生成类，都是自己写的，有一些不足或改进的地方希望可以一块善（未实现分页，生成是整个库一块，如果愿意一块完善的话，我可以给你开一个分枝）。
 
+具体代码在AutomGenerateProjectEnd\src\main\java\com\lotusfan\util\makeproject这个下面，AutomGenerateProjectEnd这个项目就是用代码生成的，具体结构可以参考一下。
+
 类介绍：
 MainThread是项目的入口main类。里面有一些可配置的参数已经加注解了，应该很容易理解。这里只说一个自己定义的包packageNameYourself
 这个变量其实就是com级下的一个包名，且整个项目只有这一个包名是可以自定义的，其它都是定义好的，具体效果可以看一下loutsfan这个就
