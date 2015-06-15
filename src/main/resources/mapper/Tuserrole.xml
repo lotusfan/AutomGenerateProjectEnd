@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lotusfan.dao.TuserroleMapper">
+
+<resultMap id="tuserroleResultMap" type="com.lotusfan.model.Tuserrole">
+	<id column="CID" property="CID"/>
+	<result column="CROLEID" property="CROLEID" />
+	<result column="CUSERID" property="CUSERID" /> 
+</resultMap> 
+<insert id="save" parameterType="com.lotusfan.model.Tuserrole" useGeneratedKeys="true" keyProperty="id">
+	insert into `tuserrole`(
+	<trim suffixOverrides=",">
+		<if test="CID != null">`CID`,</if>
+		<if test="CROLEID != null">`CROLEID`,</if>
+		<if test="CUSERID != null">`CUSERID`,</if>
+	</trim>
+	)values(
+	<trim suffixOverrides=",">
+		<if test="CID != null"> #{CID},</if>
+		<if test="CROLEID != null"> #{CROLEID},</if>
+		<if test="CUSERID != null"> #{CUSERID},</if>
+	</trim>
+	)
+</insert>
+<update id="update" parameterType="com.lotusfan.model.Tuserrole">
+	update `tuserrole`
+	<trim prefix="set" suffixOverrides=",">
+		<if test="CROLEID != null">`CROLEID` = #{CROLEID},</if>
+		<if test="CUSERID != null">`CUSERID` = #{CUSERID},</if>
+	</trim>
+	where `CID` = #{CID}
+</update>
+<select id="getBy" parameterType="com.lotusfan.model.Tuserrole" resultMap="tuserroleResultMap">
+	select * from `tuserrole`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="CID != null">AND `CID` = #{CID} </if>
+		<if test="CROLEID != null">AND `CROLEID` = #{CROLEID} </if>
+		<if test="CUSERID != null">AND `CUSERID` = #{CUSERID} </if>
+	</trim>
+</select>
+<select id="getConditionBy" parameterType="com.lotusfan.model.Tuserrole" resultMap="tuserroleResultMap">
+	select * from `tuserrole`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="CID != null">AND `CID` = #{CID} </if>
+		<if test="CROLEID != null">AND `CROLEID` = #{CROLEID} </if>
+		<if test="CUSERID != null">AND `CUSERID` = #{CUSERID} </if> 
+		<if test="maxParameter != null">AND ${maxParameter} &lt;= #{maxValue}</if>
+		<if test="minParameter != null"> AND ${minParameter} &gt; #{minValue}</if>
+	</trim>
+	<trim prefix="ORDER BY" prefixOverrides="," suffixOverrides=",">
+		<if test="sequence1 != null">${sequence1} ${sequence1Type},</if>
+		<if test="sequence2 != null">${sequence2} ${sequence2Type}</if>
+	</trim>
+	<trim prefix="LIMIT">
+		<if test="skipNum != null and pageNum != null"> ${skipNum},${pageNum}</if>
+	</trim>
+</select>
+<select id="getUniqueBy" parameterType="com.lotusfan.model.Tuserrole" resultMap="tuserroleResultMap">
+	select * from `tuserrole`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="CID != null">AND `CID` = #{CID} </if>
+		<if test="CROLEID != null">AND `CROLEID` = #{CROLEID} </if>
+		<if test="CUSERID != null">AND `CUSERID` = #{CUSERID} </if>
+	</trim>
+</select>
+<select id="count" parameterType="com.lotusfan.model.Tuserrole" resultType="java.lang.Integer">
+	select count(*) from `tuserrole`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="CID != null">AND `CID` = #{CID} </if>
+		<if test="CROLEID != null">AND `CROLEID` = #{CROLEID} </if>
+		<if test="CUSERID != null">AND `CUSERID` = #{CUSERID} </if>
+	</trim>
+</select>
+</mapper>

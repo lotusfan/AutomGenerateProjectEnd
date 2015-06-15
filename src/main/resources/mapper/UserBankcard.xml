@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lotusfan.dao.UserBankcardMapper">
+
+<resultMap id="userBankcardResultMap" type="com.lotusfan.model.UserBankcard">
+	<id column="id" property="id"/>
+	<result column="user_id" property="userId" />
+	<result column="bank_name" property="bankName" />
+	<result column="bank_code" property="bankCode" />
+	<result column="card_type" property="cardType" />
+	<result column="card_no" property="cardNo" />
+	<result column="active_flag" property="activeFlag" />
+	<result column="active_date" property="activeDate" />
+	<result column="bank_branch_name" property="bankBranchName" /> 
+</resultMap> 
+<insert id="save" parameterType="com.lotusfan.model.UserBankcard" useGeneratedKeys="true" keyProperty="id">
+	insert into `user_bankcard`(
+	<trim suffixOverrides=",">
+		<if test="userId != null">`user_id`,</if>
+		<if test="bankName != null">`bank_name`,</if>
+		<if test="bankCode != null">`bank_code`,</if>
+		<if test="cardType != null">`card_type`,</if>
+		<if test="cardNo != null">`card_no`,</if>
+		<if test="activeFlag != null">`active_flag`,</if>
+		<if test="activeDate != null">`active_date`,</if>
+		<if test="bankBranchName != null">`bank_branch_name`,</if>
+	</trim>
+	)values(
+	<trim suffixOverrides=",">
+		<if test="userId != null"> #{userId},</if>
+		<if test="bankName != null"> #{bankName},</if>
+		<if test="bankCode != null"> #{bankCode},</if>
+		<if test="cardType != null"> #{cardType},</if>
+		<if test="cardNo != null"> #{cardNo},</if>
+		<if test="activeFlag != null"> #{activeFlag},</if>
+		<if test="activeDate != null"> #{activeDate},</if>
+		<if test="bankBranchName != null"> #{bankBranchName},</if>
+	</trim>
+	)
+</insert>
+<update id="update" parameterType="com.lotusfan.model.UserBankcard">
+	update `user_bankcard`
+	<trim prefix="set" suffixOverrides=",">
+		<if test="userId != null">`user_id` = #{userId},</if>
+		<if test="bankName != null">`bank_name` = #{bankName},</if>
+		<if test="bankCode != null">`bank_code` = #{bankCode},</if>
+		<if test="cardType != null">`card_type` = #{cardType},</if>
+		<if test="cardNo != null">`card_no` = #{cardNo},</if>
+		<if test="activeFlag != null">`active_flag` = #{activeFlag},</if>
+		<if test="activeDate != null">`active_date` = #{activeDate},</if>
+		<if test="bankBranchName != null">`bank_branch_name` = #{bankBranchName},</if>
+	</trim>
+	where `id` = #{id}
+</update>
+<select id="getBy" parameterType="com.lotusfan.model.UserBankcard" resultMap="userBankcardResultMap">
+	select * from `user_bankcard`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="bankName != null">AND `bank_name` = #{bankName} </if>
+		<if test="bankCode != null">AND `bank_code` = #{bankCode} </if>
+		<if test="cardType != null">AND `card_type` = #{cardType} </if>
+		<if test="cardNo != null">AND `card_no` = #{cardNo} </if>
+		<if test="activeFlag != null">AND `active_flag` = #{activeFlag} </if>
+		<if test="activeDate != null">AND `active_date` = #{activeDate} </if>
+		<if test="bankBranchName != null">AND `bank_branch_name` = #{bankBranchName} </if>
+	</trim>
+</select>
+<select id="getConditionBy" parameterType="com.lotusfan.model.UserBankcard" resultMap="userBankcardResultMap">
+	select * from `user_bankcard`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="bankName != null">AND `bank_name` = #{bankName} </if>
+		<if test="bankCode != null">AND `bank_code` = #{bankCode} </if>
+		<if test="cardType != null">AND `card_type` = #{cardType} </if>
+		<if test="cardNo != null">AND `card_no` = #{cardNo} </if>
+		<if test="activeFlag != null">AND `active_flag` = #{activeFlag} </if>
+		<if test="activeDate != null">AND `active_date` = #{activeDate} </if>
+		<if test="bankBranchName != null">AND `bank_branch_name` = #{bankBranchName} </if> 
+		<if test="maxParameter != null">AND ${maxParameter} &lt;= #{maxValue}</if>
+		<if test="minParameter != null"> AND ${minParameter} &gt; #{minValue}</if>
+	</trim>
+	<trim prefix="ORDER BY" prefixOverrides="," suffixOverrides=",">
+		<if test="sequence1 != null">${sequence1} ${sequence1Type},</if>
+		<if test="sequence2 != null">${sequence2} ${sequence2Type}</if>
+	</trim>
+	<trim prefix="LIMIT">
+		<if test="skipNum != null and pageNum != null"> ${skipNum},${pageNum}</if>
+	</trim>
+</select>
+<select id="getUniqueBy" parameterType="com.lotusfan.model.UserBankcard" resultMap="userBankcardResultMap">
+	select * from `user_bankcard`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="bankName != null">AND `bank_name` = #{bankName} </if>
+		<if test="bankCode != null">AND `bank_code` = #{bankCode} </if>
+		<if test="cardType != null">AND `card_type` = #{cardType} </if>
+		<if test="cardNo != null">AND `card_no` = #{cardNo} </if>
+		<if test="activeFlag != null">AND `active_flag` = #{activeFlag} </if>
+		<if test="activeDate != null">AND `active_date` = #{activeDate} </if>
+		<if test="bankBranchName != null">AND `bank_branch_name` = #{bankBranchName} </if>
+	</trim>
+</select>
+<select id="count" parameterType="com.lotusfan.model.UserBankcard" resultType="java.lang.Integer">
+	select count(*) from `user_bankcard`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="bankName != null">AND `bank_name` = #{bankName} </if>
+		<if test="bankCode != null">AND `bank_code` = #{bankCode} </if>
+		<if test="cardType != null">AND `card_type` = #{cardType} </if>
+		<if test="cardNo != null">AND `card_no` = #{cardNo} </if>
+		<if test="activeFlag != null">AND `active_flag` = #{activeFlag} </if>
+		<if test="activeDate != null">AND `active_date` = #{activeDate} </if>
+		<if test="bankBranchName != null">AND `bank_branch_name` = #{bankBranchName} </if>
+	</trim>
+</select>
+</mapper>

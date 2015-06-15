@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lotusfan.dao.CommSuggestionMapper">
+
+<resultMap id="commSuggestionResultMap" type="com.lotusfan.model.CommSuggestion">
+	<id column="id" property="id"/>
+	<result column="user_id" property="userId" />
+	<result column="contact_way" property="contactWay" />
+	<result column="sug_content" property="sugContent" />
+	<result column="create_time" property="createTime" /> 
+</resultMap> 
+<insert id="save" parameterType="com.lotusfan.model.CommSuggestion" useGeneratedKeys="true" keyProperty="id">
+	insert into `comm_suggestion`(
+	<trim suffixOverrides=",">
+		<if test="userId != null">`user_id`,</if>
+		<if test="contactWay != null">`contact_way`,</if>
+		<if test="sugContent != null">`sug_content`,</if>
+		<if test="createTime != null">`create_time`,</if>
+	</trim>
+	)values(
+	<trim suffixOverrides=",">
+		<if test="userId != null"> #{userId},</if>
+		<if test="contactWay != null"> #{contactWay},</if>
+		<if test="sugContent != null"> #{sugContent},</if>
+		<if test="createTime != null"> #{createTime},</if>
+	</trim>
+	)
+</insert>
+<update id="update" parameterType="com.lotusfan.model.CommSuggestion">
+	update `comm_suggestion`
+	<trim prefix="set" suffixOverrides=",">
+		<if test="userId != null">`user_id` = #{userId},</if>
+		<if test="contactWay != null">`contact_way` = #{contactWay},</if>
+		<if test="sugContent != null">`sug_content` = #{sugContent},</if>
+		<if test="createTime != null">`create_time` = #{createTime},</if>
+	</trim>
+	where `id` = #{id}
+</update>
+<select id="getBy" parameterType="com.lotusfan.model.CommSuggestion" resultMap="commSuggestionResultMap">
+	select * from `comm_suggestion`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="contactWay != null">AND `contact_way` = #{contactWay} </if>
+		<if test="sugContent != null">AND `sug_content` = #{sugContent} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+	</trim>
+</select>
+<select id="getConditionBy" parameterType="com.lotusfan.model.CommSuggestion" resultMap="commSuggestionResultMap">
+	select * from `comm_suggestion`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="contactWay != null">AND `contact_way` = #{contactWay} </if>
+		<if test="sugContent != null">AND `sug_content` = #{sugContent} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if> 
+		<if test="maxParameter != null">AND ${maxParameter} &lt;= #{maxValue}</if>
+		<if test="minParameter != null"> AND ${minParameter} &gt; #{minValue}</if>
+	</trim>
+	<trim prefix="ORDER BY" prefixOverrides="," suffixOverrides=",">
+		<if test="sequence1 != null">${sequence1} ${sequence1Type},</if>
+		<if test="sequence2 != null">${sequence2} ${sequence2Type}</if>
+	</trim>
+	<trim prefix="LIMIT">
+		<if test="skipNum != null and pageNum != null"> ${skipNum},${pageNum}</if>
+	</trim>
+</select>
+<select id="getUniqueBy" parameterType="com.lotusfan.model.CommSuggestion" resultMap="commSuggestionResultMap">
+	select * from `comm_suggestion`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="contactWay != null">AND `contact_way` = #{contactWay} </if>
+		<if test="sugContent != null">AND `sug_content` = #{sugContent} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+	</trim>
+</select>
+<select id="count" parameterType="com.lotusfan.model.CommSuggestion" resultType="java.lang.Integer">
+	select count(*) from `comm_suggestion`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="contactWay != null">AND `contact_way` = #{contactWay} </if>
+		<if test="sugContent != null">AND `sug_content` = #{sugContent} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+	</trim>
+</select>
+</mapper>

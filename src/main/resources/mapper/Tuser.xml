@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lotusfan.dao.TuserMapper">
+
+<resultMap id="tuserResultMap" type="com.lotusfan.model.Tuser">
+	<id column="CID" property="CID"/>
+	<result column="CCREATEDATETIME" property="CCREATEDATETIME" />
+	<result column="CEMAIL" property="CEMAIL" />
+	<result column="CMODIFYDATETIME" property="CMODIFYDATETIME" />
+	<result column="CNAME" property="CNAME" />
+	<result column="CPWD" property="CPWD" />
+	<result column="CREALNAME" property="CREALNAME" />
+	<result column="CSN" property="CSN" />
+	<result column="CSTATUS" property="CSTATUS" />
+	<result column="CDEPTID" property="CDEPTID" /> 
+</resultMap> 
+<insert id="save" parameterType="com.lotusfan.model.Tuser" useGeneratedKeys="true" keyProperty="id">
+	insert into `tuser`(
+	<trim suffixOverrides=",">
+		<if test="CID != null">`CID`,</if>
+		<if test="CCREATEDATETIME != null">`CCREATEDATETIME`,</if>
+		<if test="CEMAIL != null">`CEMAIL`,</if>
+		<if test="CMODIFYDATETIME != null">`CMODIFYDATETIME`,</if>
+		<if test="CNAME != null">`CNAME`,</if>
+		<if test="CPWD != null">`CPWD`,</if>
+		<if test="CREALNAME != null">`CREALNAME`,</if>
+		<if test="CSN != null">`CSN`,</if>
+		<if test="CSTATUS != null">`CSTATUS`,</if>
+		<if test="CDEPTID != null">`CDEPTID`,</if>
+	</trim>
+	)values(
+	<trim suffixOverrides=",">
+		<if test="CID != null"> #{CID},</if>
+		<if test="CCREATEDATETIME != null"> #{CCREATEDATETIME},</if>
+		<if test="CEMAIL != null"> #{CEMAIL},</if>
+		<if test="CMODIFYDATETIME != null"> #{CMODIFYDATETIME},</if>
+		<if test="CNAME != null"> #{CNAME},</if>
+		<if test="CPWD != null"> #{CPWD},</if>
+		<if test="CREALNAME != null"> #{CREALNAME},</if>
+		<if test="CSN != null"> #{CSN},</if>
+		<if test="CSTATUS != null"> #{CSTATUS},</if>
+		<if test="CDEPTID != null"> #{CDEPTID},</if>
+	</trim>
+	)
+</insert>
+<update id="update" parameterType="com.lotusfan.model.Tuser">
+	update `tuser`
+	<trim prefix="set" suffixOverrides=",">
+		<if test="CCREATEDATETIME != null">`CCREATEDATETIME` = #{CCREATEDATETIME},</if>
+		<if test="CEMAIL != null">`CEMAIL` = #{CEMAIL},</if>
+		<if test="CMODIFYDATETIME != null">`CMODIFYDATETIME` = #{CMODIFYDATETIME},</if>
+		<if test="CNAME != null">`CNAME` = #{CNAME},</if>
+		<if test="CPWD != null">`CPWD` = #{CPWD},</if>
+		<if test="CREALNAME != null">`CREALNAME` = #{CREALNAME},</if>
+		<if test="CSN != null">`CSN` = #{CSN},</if>
+		<if test="CSTATUS != null">`CSTATUS` = #{CSTATUS},</if>
+		<if test="CDEPTID != null">`CDEPTID` = #{CDEPTID},</if>
+	</trim>
+	where `CID` = #{CID}
+</update>
+<select id="getBy" parameterType="com.lotusfan.model.Tuser" resultMap="tuserResultMap">
+	select * from `tuser`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="CID != null">AND `CID` = #{CID} </if>
+		<if test="CCREATEDATETIME != null">AND `CCREATEDATETIME` = #{CCREATEDATETIME} </if>
+		<if test="CEMAIL != null">AND `CEMAIL` = #{CEMAIL} </if>
+		<if test="CMODIFYDATETIME != null">AND `CMODIFYDATETIME` = #{CMODIFYDATETIME} </if>
+		<if test="CNAME != null">AND `CNAME` = #{CNAME} </if>
+		<if test="CPWD != null">AND `CPWD` = #{CPWD} </if>
+		<if test="CREALNAME != null">AND `CREALNAME` = #{CREALNAME} </if>
+		<if test="CSN != null">AND `CSN` = #{CSN} </if>
+		<if test="CSTATUS != null">AND `CSTATUS` = #{CSTATUS} </if>
+		<if test="CDEPTID != null">AND `CDEPTID` = #{CDEPTID} </if>
+	</trim>
+</select>
+<select id="getConditionBy" parameterType="com.lotusfan.model.Tuser" resultMap="tuserResultMap">
+	select * from `tuser`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="CID != null">AND `CID` = #{CID} </if>
+		<if test="CCREATEDATETIME != null">AND `CCREATEDATETIME` = #{CCREATEDATETIME} </if>
+		<if test="CEMAIL != null">AND `CEMAIL` = #{CEMAIL} </if>
+		<if test="CMODIFYDATETIME != null">AND `CMODIFYDATETIME` = #{CMODIFYDATETIME} </if>
+		<if test="CNAME != null">AND `CNAME` = #{CNAME} </if>
+		<if test="CPWD != null">AND `CPWD` = #{CPWD} </if>
+		<if test="CREALNAME != null">AND `CREALNAME` = #{CREALNAME} </if>
+		<if test="CSN != null">AND `CSN` = #{CSN} </if>
+		<if test="CSTATUS != null">AND `CSTATUS` = #{CSTATUS} </if>
+		<if test="CDEPTID != null">AND `CDEPTID` = #{CDEPTID} </if> 
+		<if test="maxParameter != null">AND ${maxParameter} &lt;= #{maxValue}</if>
+		<if test="minParameter != null"> AND ${minParameter} &gt; #{minValue}</if>
+	</trim>
+	<trim prefix="ORDER BY" prefixOverrides="," suffixOverrides=",">
+		<if test="sequence1 != null">${sequence1} ${sequence1Type},</if>
+		<if test="sequence2 != null">${sequence2} ${sequence2Type}</if>
+	</trim>
+	<trim prefix="LIMIT">
+		<if test="skipNum != null and pageNum != null"> ${skipNum},${pageNum}</if>
+	</trim>
+</select>
+<select id="getUniqueBy" parameterType="com.lotusfan.model.Tuser" resultMap="tuserResultMap">
+	select * from `tuser`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="CID != null">AND `CID` = #{CID} </if>
+		<if test="CCREATEDATETIME != null">AND `CCREATEDATETIME` = #{CCREATEDATETIME} </if>
+		<if test="CEMAIL != null">AND `CEMAIL` = #{CEMAIL} </if>
+		<if test="CMODIFYDATETIME != null">AND `CMODIFYDATETIME` = #{CMODIFYDATETIME} </if>
+		<if test="CNAME != null">AND `CNAME` = #{CNAME} </if>
+		<if test="CPWD != null">AND `CPWD` = #{CPWD} </if>
+		<if test="CREALNAME != null">AND `CREALNAME` = #{CREALNAME} </if>
+		<if test="CSN != null">AND `CSN` = #{CSN} </if>
+		<if test="CSTATUS != null">AND `CSTATUS` = #{CSTATUS} </if>
+		<if test="CDEPTID != null">AND `CDEPTID` = #{CDEPTID} </if>
+	</trim>
+</select>
+<select id="count" parameterType="com.lotusfan.model.Tuser" resultType="java.lang.Integer">
+	select count(*) from `tuser`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="CID != null">AND `CID` = #{CID} </if>
+		<if test="CCREATEDATETIME != null">AND `CCREATEDATETIME` = #{CCREATEDATETIME} </if>
+		<if test="CEMAIL != null">AND `CEMAIL` = #{CEMAIL} </if>
+		<if test="CMODIFYDATETIME != null">AND `CMODIFYDATETIME` = #{CMODIFYDATETIME} </if>
+		<if test="CNAME != null">AND `CNAME` = #{CNAME} </if>
+		<if test="CPWD != null">AND `CPWD` = #{CPWD} </if>
+		<if test="CREALNAME != null">AND `CREALNAME` = #{CREALNAME} </if>
+		<if test="CSN != null">AND `CSN` = #{CSN} </if>
+		<if test="CSTATUS != null">AND `CSTATUS` = #{CSTATUS} </if>
+		<if test="CDEPTID != null">AND `CDEPTID` = #{CDEPTID} </if>
+	</trim>
+</select>
+</mapper>

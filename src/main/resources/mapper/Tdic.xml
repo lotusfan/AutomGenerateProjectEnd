@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lotusfan.dao.TdicMapper">
+
+<resultMap id="tdicResultMap" type="com.lotusfan.model.Tdic">
+	<id column="CID" property="CID"/>
+	<result column="CKEY" property="CKEY" />
+	<result column="CSTATUS" property="CSTATUS" />
+	<result column="CTYPE" property="CTYPE" />
+	<result column="CVALUE" property="CVALUE" /> 
+</resultMap> 
+<insert id="save" parameterType="com.lotusfan.model.Tdic" useGeneratedKeys="true" keyProperty="id">
+	insert into `tdic`(
+	<trim suffixOverrides=",">
+		<if test="CID != null">`CID`,</if>
+		<if test="CKEY != null">`CKEY`,</if>
+		<if test="CSTATUS != null">`CSTATUS`,</if>
+		<if test="CTYPE != null">`CTYPE`,</if>
+		<if test="CVALUE != null">`CVALUE`,</if>
+	</trim>
+	)values(
+	<trim suffixOverrides=",">
+		<if test="CID != null"> #{CID},</if>
+		<if test="CKEY != null"> #{CKEY},</if>
+		<if test="CSTATUS != null"> #{CSTATUS},</if>
+		<if test="CTYPE != null"> #{CTYPE},</if>
+		<if test="CVALUE != null"> #{CVALUE},</if>
+	</trim>
+	)
+</insert>
+<update id="update" parameterType="com.lotusfan.model.Tdic">
+	update `tdic`
+	<trim prefix="set" suffixOverrides=",">
+		<if test="CKEY != null">`CKEY` = #{CKEY},</if>
+		<if test="CSTATUS != null">`CSTATUS` = #{CSTATUS},</if>
+		<if test="CTYPE != null">`CTYPE` = #{CTYPE},</if>
+		<if test="CVALUE != null">`CVALUE` = #{CVALUE},</if>
+	</trim>
+	where `CID` = #{CID}
+</update>
+<select id="getBy" parameterType="com.lotusfan.model.Tdic" resultMap="tdicResultMap">
+	select * from `tdic`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="CID != null">AND `CID` = #{CID} </if>
+		<if test="CKEY != null">AND `CKEY` = #{CKEY} </if>
+		<if test="CSTATUS != null">AND `CSTATUS` = #{CSTATUS} </if>
+		<if test="CTYPE != null">AND `CTYPE` = #{CTYPE} </if>
+		<if test="CVALUE != null">AND `CVALUE` = #{CVALUE} </if>
+	</trim>
+</select>
+<select id="getConditionBy" parameterType="com.lotusfan.model.Tdic" resultMap="tdicResultMap">
+	select * from `tdic`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="CID != null">AND `CID` = #{CID} </if>
+		<if test="CKEY != null">AND `CKEY` = #{CKEY} </if>
+		<if test="CSTATUS != null">AND `CSTATUS` = #{CSTATUS} </if>
+		<if test="CTYPE != null">AND `CTYPE` = #{CTYPE} </if>
+		<if test="CVALUE != null">AND `CVALUE` = #{CVALUE} </if> 
+		<if test="maxParameter != null">AND ${maxParameter} &lt;= #{maxValue}</if>
+		<if test="minParameter != null"> AND ${minParameter} &gt; #{minValue}</if>
+	</trim>
+	<trim prefix="ORDER BY" prefixOverrides="," suffixOverrides=",">
+		<if test="sequence1 != null">${sequence1} ${sequence1Type},</if>
+		<if test="sequence2 != null">${sequence2} ${sequence2Type}</if>
+	</trim>
+	<trim prefix="LIMIT">
+		<if test="skipNum != null and pageNum != null"> ${skipNum},${pageNum}</if>
+	</trim>
+</select>
+<select id="getUniqueBy" parameterType="com.lotusfan.model.Tdic" resultMap="tdicResultMap">
+	select * from `tdic`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="CID != null">AND `CID` = #{CID} </if>
+		<if test="CKEY != null">AND `CKEY` = #{CKEY} </if>
+		<if test="CSTATUS != null">AND `CSTATUS` = #{CSTATUS} </if>
+		<if test="CTYPE != null">AND `CTYPE` = #{CTYPE} </if>
+		<if test="CVALUE != null">AND `CVALUE` = #{CVALUE} </if>
+	</trim>
+</select>
+<select id="count" parameterType="com.lotusfan.model.Tdic" resultType="java.lang.Integer">
+	select count(*) from `tdic`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="CID != null">AND `CID` = #{CID} </if>
+		<if test="CKEY != null">AND `CKEY` = #{CKEY} </if>
+		<if test="CSTATUS != null">AND `CSTATUS` = #{CSTATUS} </if>
+		<if test="CTYPE != null">AND `CTYPE` = #{CTYPE} </if>
+		<if test="CVALUE != null">AND `CVALUE` = #{CVALUE} </if>
+	</trim>
+</select>
+</mapper>

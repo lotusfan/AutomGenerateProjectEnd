@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lotusfan.dao.PayLogInfoMapper">
+
+<resultMap id="payLogInfoResultMap" type="com.lotusfan.model.PayLogInfo">
+	<id column="id" property="id"/>
+	<result column="log_name" property="logName" />
+	<result column="cash_amount" property="cashAmount" />
+	<result column="user_id" property="userId" />
+	<result column="status" property="status" />
+	<result column="create_time" property="createTime" />
+	<result column="update_time" property="updateTime" />
+	<result column="trans_type" property="transType" />
+	<result column="no_order" property="noOrder" /> 
+</resultMap> 
+<insert id="save" parameterType="com.lotusfan.model.PayLogInfo" useGeneratedKeys="true" keyProperty="id">
+	insert into `pay_log_info`(
+	<trim suffixOverrides=",">
+		<if test="logName != null">`log_name`,</if>
+		<if test="cashAmount != null">`cash_amount`,</if>
+		<if test="userId != null">`user_id`,</if>
+		<if test="status != null">`status`,</if>
+		<if test="createTime != null">`create_time`,</if>
+		<if test="updateTime != null">`update_time`,</if>
+		<if test="transType != null">`trans_type`,</if>
+		<if test="noOrder != null">`no_order`,</if>
+	</trim>
+	)values(
+	<trim suffixOverrides=",">
+		<if test="logName != null"> #{logName},</if>
+		<if test="cashAmount != null"> #{cashAmount},</if>
+		<if test="userId != null"> #{userId},</if>
+		<if test="status != null"> #{status},</if>
+		<if test="createTime != null"> #{createTime},</if>
+		<if test="updateTime != null"> #{updateTime},</if>
+		<if test="transType != null"> #{transType},</if>
+		<if test="noOrder != null"> #{noOrder},</if>
+	</trim>
+	)
+</insert>
+<update id="update" parameterType="com.lotusfan.model.PayLogInfo">
+	update `pay_log_info`
+	<trim prefix="set" suffixOverrides=",">
+		<if test="logName != null">`log_name` = #{logName},</if>
+		<if test="cashAmount != null">`cash_amount` = #{cashAmount},</if>
+		<if test="userId != null">`user_id` = #{userId},</if>
+		<if test="status != null">`status` = #{status},</if>
+		<if test="createTime != null">`create_time` = #{createTime},</if>
+		<if test="updateTime != null">`update_time` = #{updateTime},</if>
+		<if test="transType != null">`trans_type` = #{transType},</if>
+		<if test="noOrder != null">`no_order` = #{noOrder},</if>
+	</trim>
+	where `id` = #{id}
+</update>
+<select id="getBy" parameterType="com.lotusfan.model.PayLogInfo" resultMap="payLogInfoResultMap">
+	select * from `pay_log_info`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="logName != null">AND `log_name` = #{logName} </if>
+		<if test="cashAmount != null">AND `cash_amount` = #{cashAmount} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="status != null">AND `status` = #{status} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+		<if test="transType != null">AND `trans_type` = #{transType} </if>
+		<if test="noOrder != null">AND `no_order` = #{noOrder} </if>
+	</trim>
+</select>
+<select id="getConditionBy" parameterType="com.lotusfan.model.PayLogInfo" resultMap="payLogInfoResultMap">
+	select * from `pay_log_info`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="logName != null">AND `log_name` = #{logName} </if>
+		<if test="cashAmount != null">AND `cash_amount` = #{cashAmount} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="status != null">AND `status` = #{status} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+		<if test="transType != null">AND `trans_type` = #{transType} </if>
+		<if test="noOrder != null">AND `no_order` = #{noOrder} </if> 
+		<if test="maxParameter != null">AND ${maxParameter} &lt;= #{maxValue}</if>
+		<if test="minParameter != null"> AND ${minParameter} &gt; #{minValue}</if>
+	</trim>
+	<trim prefix="ORDER BY" prefixOverrides="," suffixOverrides=",">
+		<if test="sequence1 != null">${sequence1} ${sequence1Type},</if>
+		<if test="sequence2 != null">${sequence2} ${sequence2Type}</if>
+	</trim>
+	<trim prefix="LIMIT">
+		<if test="skipNum != null and pageNum != null"> ${skipNum},${pageNum}</if>
+	</trim>
+</select>
+<select id="getUniqueBy" parameterType="com.lotusfan.model.PayLogInfo" resultMap="payLogInfoResultMap">
+	select * from `pay_log_info`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="logName != null">AND `log_name` = #{logName} </if>
+		<if test="cashAmount != null">AND `cash_amount` = #{cashAmount} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="status != null">AND `status` = #{status} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+		<if test="transType != null">AND `trans_type` = #{transType} </if>
+		<if test="noOrder != null">AND `no_order` = #{noOrder} </if>
+	</trim>
+</select>
+<select id="count" parameterType="com.lotusfan.model.PayLogInfo" resultType="java.lang.Integer">
+	select count(*) from `pay_log_info`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="logName != null">AND `log_name` = #{logName} </if>
+		<if test="cashAmount != null">AND `cash_amount` = #{cashAmount} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="status != null">AND `status` = #{status} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+		<if test="transType != null">AND `trans_type` = #{transType} </if>
+		<if test="noOrder != null">AND `no_order` = #{noOrder} </if>
+	</trim>
+</select>
+</mapper>

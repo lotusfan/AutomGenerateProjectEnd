@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lotusfan.dao.NummMapper">
+
+<resultMap id="nummResultMap" type="com.lotusfan.model.Numm">
+	<id column="id" property="id"/>
+	<result column="num" property="num" /> 
+</resultMap> 
+<insert id="save" parameterType="com.lotusfan.model.Numm" useGeneratedKeys="true" keyProperty="id">
+	insert into `numm`(
+	<trim suffixOverrides=",">
+		<if test="num != null">`num`,</if>
+	</trim>
+	)values(
+	<trim suffixOverrides=",">
+		<if test="num != null"> #{num},</if>
+	</trim>
+	)
+</insert>
+<update id="update" parameterType="com.lotusfan.model.Numm">
+	update `numm`
+	<trim prefix="set" suffixOverrides=",">
+		<if test="num != null">`num` = #{num},</if>
+	</trim>
+	where `id` = #{id}
+</update>
+<select id="getBy" parameterType="com.lotusfan.model.Numm" resultMap="nummResultMap">
+	select * from `numm`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="num != null">AND `num` = #{num} </if>
+		<if test="id != null">AND `id` = #{id} </if>
+	</trim>
+</select>
+<select id="getConditionBy" parameterType="com.lotusfan.model.Numm" resultMap="nummResultMap">
+	select * from `numm`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="num != null">AND `num` = #{num} </if>
+		<if test="id != null">AND `id` = #{id} </if> 
+		<if test="maxParameter != null">AND ${maxParameter} &lt;= #{maxValue}</if>
+		<if test="minParameter != null"> AND ${minParameter} &gt; #{minValue}</if>
+	</trim>
+	<trim prefix="ORDER BY" prefixOverrides="," suffixOverrides=",">
+		<if test="sequence1 != null">${sequence1} ${sequence1Type},</if>
+		<if test="sequence2 != null">${sequence2} ${sequence2Type}</if>
+	</trim>
+	<trim prefix="LIMIT">
+		<if test="skipNum != null and pageNum != null"> ${skipNum},${pageNum}</if>
+	</trim>
+</select>
+<select id="getUniqueBy" parameterType="com.lotusfan.model.Numm" resultMap="nummResultMap">
+	select * from `numm`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="num != null">AND `num` = #{num} </if>
+		<if test="id != null">AND `id` = #{id} </if>
+	</trim>
+</select>
+<select id="count" parameterType="com.lotusfan.model.Numm" resultType="java.lang.Integer">
+	select count(*) from `numm`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="num != null">AND `num` = #{num} </if>
+	</trim>
+</select>
+</mapper>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lotusfan.dao.CfDwTripMapper">
+
+<resultMap id="cfDwTripResultMap" type="com.lotusfan.model.CfDwTrip">
+	<id column="id" property="id"/>
+	<result column="cf_dw_id" property="cfDwId" />
+	<result column="day_num" property="dayNum" />
+	<result column="address" property="address" />
+	<result column="arrange" property="arrange" />
+	<result column="create_time" property="createTime" />
+	<result column="update_time" property="updateTime" /> 
+</resultMap> 
+<insert id="save" parameterType="com.lotusfan.model.CfDwTrip" useGeneratedKeys="true" keyProperty="id">
+	insert into `cf_dw_trip`(
+	<trim suffixOverrides=",">
+		<if test="cfDwId != null">`cf_dw_id`,</if>
+		<if test="dayNum != null">`day_num`,</if>
+		<if test="address != null">`address`,</if>
+		<if test="arrange != null">`arrange`,</if>
+		<if test="createTime != null">`create_time`,</if>
+		<if test="updateTime != null">`update_time`,</if>
+	</trim>
+	)values(
+	<trim suffixOverrides=",">
+		<if test="cfDwId != null"> #{cfDwId},</if>
+		<if test="dayNum != null"> #{dayNum},</if>
+		<if test="address != null"> #{address},</if>
+		<if test="arrange != null"> #{arrange},</if>
+		<if test="createTime != null"> #{createTime},</if>
+		<if test="updateTime != null"> #{updateTime},</if>
+	</trim>
+	)
+</insert>
+<update id="update" parameterType="com.lotusfan.model.CfDwTrip">
+	update `cf_dw_trip`
+	<trim prefix="set" suffixOverrides=",">
+		<if test="cfDwId != null">`cf_dw_id` = #{cfDwId},</if>
+		<if test="dayNum != null">`day_num` = #{dayNum},</if>
+		<if test="address != null">`address` = #{address},</if>
+		<if test="arrange != null">`arrange` = #{arrange},</if>
+		<if test="createTime != null">`create_time` = #{createTime},</if>
+		<if test="updateTime != null">`update_time` = #{updateTime},</if>
+	</trim>
+	where `id` = #{id}
+</update>
+<select id="getBy" parameterType="com.lotusfan.model.CfDwTrip" resultMap="cfDwTripResultMap">
+	select * from `cf_dw_trip`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="cfDwId != null">AND `cf_dw_id` = #{cfDwId} </if>
+		<if test="dayNum != null">AND `day_num` = #{dayNum} </if>
+		<if test="address != null">AND `address` = #{address} </if>
+		<if test="arrange != null">AND `arrange` = #{arrange} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+	</trim>
+</select>
+<select id="getConditionBy" parameterType="com.lotusfan.model.CfDwTrip" resultMap="cfDwTripResultMap">
+	select * from `cf_dw_trip`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="cfDwId != null">AND `cf_dw_id` = #{cfDwId} </if>
+		<if test="dayNum != null">AND `day_num` = #{dayNum} </if>
+		<if test="address != null">AND `address` = #{address} </if>
+		<if test="arrange != null">AND `arrange` = #{arrange} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if> 
+		<if test="maxParameter != null">AND ${maxParameter} &lt;= #{maxValue}</if>
+		<if test="minParameter != null"> AND ${minParameter} &gt; #{minValue}</if>
+	</trim>
+	<trim prefix="ORDER BY" prefixOverrides="," suffixOverrides=",">
+		<if test="sequence1 != null">${sequence1} ${sequence1Type},</if>
+		<if test="sequence2 != null">${sequence2} ${sequence2Type}</if>
+	</trim>
+	<trim prefix="LIMIT">
+		<if test="skipNum != null and pageNum != null"> ${skipNum},${pageNum}</if>
+	</trim>
+</select>
+<select id="getUniqueBy" parameterType="com.lotusfan.model.CfDwTrip" resultMap="cfDwTripResultMap">
+	select * from `cf_dw_trip`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="cfDwId != null">AND `cf_dw_id` = #{cfDwId} </if>
+		<if test="dayNum != null">AND `day_num` = #{dayNum} </if>
+		<if test="address != null">AND `address` = #{address} </if>
+		<if test="arrange != null">AND `arrange` = #{arrange} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+	</trim>
+</select>
+<select id="count" parameterType="com.lotusfan.model.CfDwTrip" resultType="java.lang.Integer">
+	select count(*) from `cf_dw_trip`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="cfDwId != null">AND `cf_dw_id` = #{cfDwId} </if>
+		<if test="dayNum != null">AND `day_num` = #{dayNum} </if>
+		<if test="address != null">AND `address` = #{address} </if>
+		<if test="arrange != null">AND `arrange` = #{arrange} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+	</trim>
+</select>
+</mapper>

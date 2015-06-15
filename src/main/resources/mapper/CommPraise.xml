@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lotusfan.dao.CommPraiseMapper">
+
+<resultMap id="commPraiseResultMap" type="com.lotusfan.model.CommPraise">
+	<id column="id" property="id"/>
+	<result column="user_id" property="userId" />
+	<result column="biz_id" property="bizId" />
+	<result column="biz_type" property="bizType" />
+	<result column="create_time" property="createTime" />
+	<result column="praise_type" property="praiseType" /> 
+</resultMap> 
+<insert id="save" parameterType="com.lotusfan.model.CommPraise" useGeneratedKeys="true" keyProperty="id">
+	insert into `comm_praise`(
+	<trim suffixOverrides=",">
+		<if test="userId != null">`user_id`,</if>
+		<if test="bizId != null">`biz_id`,</if>
+		<if test="bizType != null">`biz_type`,</if>
+		<if test="createTime != null">`create_time`,</if>
+		<if test="praiseType != null">`praise_type`,</if>
+	</trim>
+	)values(
+	<trim suffixOverrides=",">
+		<if test="userId != null"> #{userId},</if>
+		<if test="bizId != null"> #{bizId},</if>
+		<if test="bizType != null"> #{bizType},</if>
+		<if test="createTime != null"> #{createTime},</if>
+		<if test="praiseType != null"> #{praiseType},</if>
+	</trim>
+	)
+</insert>
+<update id="update" parameterType="com.lotusfan.model.CommPraise">
+	update `comm_praise`
+	<trim prefix="set" suffixOverrides=",">
+		<if test="userId != null">`user_id` = #{userId},</if>
+		<if test="bizId != null">`biz_id` = #{bizId},</if>
+		<if test="bizType != null">`biz_type` = #{bizType},</if>
+		<if test="createTime != null">`create_time` = #{createTime},</if>
+		<if test="praiseType != null">`praise_type` = #{praiseType},</if>
+	</trim>
+	where `id` = #{id}
+</update>
+<select id="getBy" parameterType="com.lotusfan.model.CommPraise" resultMap="commPraiseResultMap">
+	select * from `comm_praise`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="bizId != null">AND `biz_id` = #{bizId} </if>
+		<if test="bizType != null">AND `biz_type` = #{bizType} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="praiseType != null">AND `praise_type` = #{praiseType} </if>
+	</trim>
+</select>
+<select id="getConditionBy" parameterType="com.lotusfan.model.CommPraise" resultMap="commPraiseResultMap">
+	select * from `comm_praise`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="bizId != null">AND `biz_id` = #{bizId} </if>
+		<if test="bizType != null">AND `biz_type` = #{bizType} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="praiseType != null">AND `praise_type` = #{praiseType} </if> 
+		<if test="maxParameter != null">AND ${maxParameter} &lt;= #{maxValue}</if>
+		<if test="minParameter != null"> AND ${minParameter} &gt; #{minValue}</if>
+	</trim>
+	<trim prefix="ORDER BY" prefixOverrides="," suffixOverrides=",">
+		<if test="sequence1 != null">${sequence1} ${sequence1Type},</if>
+		<if test="sequence2 != null">${sequence2} ${sequence2Type}</if>
+	</trim>
+	<trim prefix="LIMIT">
+		<if test="skipNum != null and pageNum != null"> ${skipNum},${pageNum}</if>
+	</trim>
+</select>
+<select id="getUniqueBy" parameterType="com.lotusfan.model.CommPraise" resultMap="commPraiseResultMap">
+	select * from `comm_praise`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="bizId != null">AND `biz_id` = #{bizId} </if>
+		<if test="bizType != null">AND `biz_type` = #{bizType} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="praiseType != null">AND `praise_type` = #{praiseType} </if>
+	</trim>
+</select>
+<select id="count" parameterType="com.lotusfan.model.CommPraise" resultType="java.lang.Integer">
+	select count(*) from `comm_praise`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="bizId != null">AND `biz_id` = #{bizId} </if>
+		<if test="bizType != null">AND `biz_type` = #{bizType} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="praiseType != null">AND `praise_type` = #{praiseType} </if>
+	</trim>
+</select>
+</mapper>

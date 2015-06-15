@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lotusfan.dao.RtGroupInfoMapper">
+
+<resultMap id="rtGroupInfoResultMap" type="com.lotusfan.model.RtGroupInfo">
+	<id column="id" property="id"/>
+	<result column="rt_id" property="rtId" />
+	<result column="active_time" property="activeTime" />
+	<result column="attend_num" property="attendNum" />
+	<result column="user_id" property="userId" />
+	<result column="group_desc" property="groupDesc" />
+	<result column="status" property="status" />
+	<result column="create_time" property="createTime" /> 
+</resultMap> 
+<insert id="save" parameterType="com.lotusfan.model.RtGroupInfo" useGeneratedKeys="true" keyProperty="id">
+	insert into `rt_group_info`(
+	<trim suffixOverrides=",">
+		<if test="rtId != null">`rt_id`,</if>
+		<if test="activeTime != null">`active_time`,</if>
+		<if test="attendNum != null">`attend_num`,</if>
+		<if test="userId != null">`user_id`,</if>
+		<if test="groupDesc != null">`group_desc`,</if>
+		<if test="status != null">`status`,</if>
+		<if test="createTime != null">`create_time`,</if>
+	</trim>
+	)values(
+	<trim suffixOverrides=",">
+		<if test="rtId != null"> #{rtId},</if>
+		<if test="activeTime != null"> #{activeTime},</if>
+		<if test="attendNum != null"> #{attendNum},</if>
+		<if test="userId != null"> #{userId},</if>
+		<if test="groupDesc != null"> #{groupDesc},</if>
+		<if test="status != null"> #{status},</if>
+		<if test="createTime != null"> #{createTime},</if>
+	</trim>
+	)
+</insert>
+<update id="update" parameterType="com.lotusfan.model.RtGroupInfo">
+	update `rt_group_info`
+	<trim prefix="set" suffixOverrides=",">
+		<if test="rtId != null">`rt_id` = #{rtId},</if>
+		<if test="activeTime != null">`active_time` = #{activeTime},</if>
+		<if test="attendNum != null">`attend_num` = #{attendNum},</if>
+		<if test="userId != null">`user_id` = #{userId},</if>
+		<if test="groupDesc != null">`group_desc` = #{groupDesc},</if>
+		<if test="status != null">`status` = #{status},</if>
+		<if test="createTime != null">`create_time` = #{createTime},</if>
+	</trim>
+	where `id` = #{id}
+</update>
+<select id="getBy" parameterType="com.lotusfan.model.RtGroupInfo" resultMap="rtGroupInfoResultMap">
+	select * from `rt_group_info`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="rtId != null">AND `rt_id` = #{rtId} </if>
+		<if test="activeTime != null">AND `active_time` = #{activeTime} </if>
+		<if test="attendNum != null">AND `attend_num` = #{attendNum} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="groupDesc != null">AND `group_desc` = #{groupDesc} </if>
+		<if test="status != null">AND `status` = #{status} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+	</trim>
+</select>
+<select id="getConditionBy" parameterType="com.lotusfan.model.RtGroupInfo" resultMap="rtGroupInfoResultMap">
+	select * from `rt_group_info`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="rtId != null">AND `rt_id` = #{rtId} </if>
+		<if test="activeTime != null">AND `active_time` = #{activeTime} </if>
+		<if test="attendNum != null">AND `attend_num` = #{attendNum} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="groupDesc != null">AND `group_desc` = #{groupDesc} </if>
+		<if test="status != null">AND `status` = #{status} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if> 
+		<if test="maxParameter != null">AND ${maxParameter} &lt;= #{maxValue}</if>
+		<if test="minParameter != null"> AND ${minParameter} &gt; #{minValue}</if>
+	</trim>
+	<trim prefix="ORDER BY" prefixOverrides="," suffixOverrides=",">
+		<if test="sequence1 != null">${sequence1} ${sequence1Type},</if>
+		<if test="sequence2 != null">${sequence2} ${sequence2Type}</if>
+	</trim>
+	<trim prefix="LIMIT">
+		<if test="skipNum != null and pageNum != null"> ${skipNum},${pageNum}</if>
+	</trim>
+</select>
+<select id="getUniqueBy" parameterType="com.lotusfan.model.RtGroupInfo" resultMap="rtGroupInfoResultMap">
+	select * from `rt_group_info`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="rtId != null">AND `rt_id` = #{rtId} </if>
+		<if test="activeTime != null">AND `active_time` = #{activeTime} </if>
+		<if test="attendNum != null">AND `attend_num` = #{attendNum} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="groupDesc != null">AND `group_desc` = #{groupDesc} </if>
+		<if test="status != null">AND `status` = #{status} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+	</trim>
+</select>
+<select id="count" parameterType="com.lotusfan.model.RtGroupInfo" resultType="java.lang.Integer">
+	select count(*) from `rt_group_info`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="rtId != null">AND `rt_id` = #{rtId} </if>
+		<if test="activeTime != null">AND `active_time` = #{activeTime} </if>
+		<if test="attendNum != null">AND `attend_num` = #{attendNum} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="groupDesc != null">AND `group_desc` = #{groupDesc} </if>
+		<if test="status != null">AND `status` = #{status} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+	</trim>
+</select>
+</mapper>

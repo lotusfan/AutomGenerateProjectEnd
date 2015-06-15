@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lotusfan.dao.RtBaseinfoMapper">
+
+<resultMap id="rtBaseinfoResultMap" type="com.lotusfan.model.RtBaseinfo">
+	<id column="id" property="id"/>
+	<result column="content" property="content" />
+	<result column="title" property="title" />
+	<result column="suitable_num" property="suitableNum" />
+	<result column="original_price" property="originalPrice" />
+	<result column="per_consum" property="perConsum" />
+	<result column="label" property="label" />
+	<result column="area_code" property="areaCode" />
+	<result column="user_id" property="userId" />
+	<result column="status" property="status" />
+	<result column="operator" property="operator" />
+	<result column="create_time" property="createTime" />
+	<result column="update_time" property="updateTime" />
+	<result column="operator_time" property="operatorTime" />
+	<result column="sequence" property="sequence" />
+	<result column="detail_url" property="detailUrl" /> 
+</resultMap> 
+<insert id="save" parameterType="com.lotusfan.model.RtBaseinfo" useGeneratedKeys="true" keyProperty="id">
+	insert into `rt_baseinfo`(
+	<trim suffixOverrides=",">
+		<if test="content != null">`content`,</if>
+		<if test="title != null">`title`,</if>
+		<if test="suitableNum != null">`suitable_num`,</if>
+		<if test="originalPrice != null">`original_price`,</if>
+		<if test="perConsum != null">`per_consum`,</if>
+		<if test="label != null">`label`,</if>
+		<if test="areaCode != null">`area_code`,</if>
+		<if test="userId != null">`user_id`,</if>
+		<if test="status != null">`status`,</if>
+		<if test="operator != null">`operator`,</if>
+		<if test="createTime != null">`create_time`,</if>
+		<if test="updateTime != null">`update_time`,</if>
+		<if test="operatorTime != null">`operator_time`,</if>
+		<if test="sequence != null">`sequence`,</if>
+		<if test="detailUrl != null">`detail_url`,</if>
+	</trim>
+	)values(
+	<trim suffixOverrides=",">
+		<if test="content != null"> #{content},</if>
+		<if test="title != null"> #{title},</if>
+		<if test="suitableNum != null"> #{suitableNum},</if>
+		<if test="originalPrice != null"> #{originalPrice},</if>
+		<if test="perConsum != null"> #{perConsum},</if>
+		<if test="label != null"> #{label},</if>
+		<if test="areaCode != null"> #{areaCode},</if>
+		<if test="userId != null"> #{userId},</if>
+		<if test="status != null"> #{status},</if>
+		<if test="operator != null"> #{operator},</if>
+		<if test="createTime != null"> #{createTime},</if>
+		<if test="updateTime != null"> #{updateTime},</if>
+		<if test="operatorTime != null"> #{operatorTime},</if>
+		<if test="sequence != null"> #{sequence},</if>
+		<if test="detailUrl != null"> #{detailUrl},</if>
+	</trim>
+	)
+</insert>
+<update id="update" parameterType="com.lotusfan.model.RtBaseinfo">
+	update `rt_baseinfo`
+	<trim prefix="set" suffixOverrides=",">
+		<if test="content != null">`content` = #{content},</if>
+		<if test="title != null">`title` = #{title},</if>
+		<if test="suitableNum != null">`suitable_num` = #{suitableNum},</if>
+		<if test="originalPrice != null">`original_price` = #{originalPrice},</if>
+		<if test="perConsum != null">`per_consum` = #{perConsum},</if>
+		<if test="label != null">`label` = #{label},</if>
+		<if test="areaCode != null">`area_code` = #{areaCode},</if>
+		<if test="userId != null">`user_id` = #{userId},</if>
+		<if test="status != null">`status` = #{status},</if>
+		<if test="operator != null">`operator` = #{operator},</if>
+		<if test="createTime != null">`create_time` = #{createTime},</if>
+		<if test="updateTime != null">`update_time` = #{updateTime},</if>
+		<if test="operatorTime != null">`operator_time` = #{operatorTime},</if>
+		<if test="sequence != null">`sequence` = #{sequence},</if>
+		<if test="detailUrl != null">`detail_url` = #{detailUrl},</if>
+	</trim>
+	where `id` = #{id}
+</update>
+<select id="getBy" parameterType="com.lotusfan.model.RtBaseinfo" resultMap="rtBaseinfoResultMap">
+	select * from `rt_baseinfo`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="content != null">AND `content` = #{content} </if>
+		<if test="title != null">AND `title` = #{title} </if>
+		<if test="suitableNum != null">AND `suitable_num` = #{suitableNum} </if>
+		<if test="originalPrice != null">AND `original_price` = #{originalPrice} </if>
+		<if test="perConsum != null">AND `per_consum` = #{perConsum} </if>
+		<if test="label != null">AND `label` = #{label} </if>
+		<if test="areaCode != null">AND `area_code` = #{areaCode} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="status != null">AND `status` = #{status} </if>
+		<if test="operator != null">AND `operator` = #{operator} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+		<if test="operatorTime != null">AND `operator_time` = #{operatorTime} </if>
+		<if test="sequence != null">AND `sequence` = #{sequence} </if>
+		<if test="detailUrl != null">AND `detail_url` = #{detailUrl} </if>
+	</trim>
+</select>
+<select id="getConditionBy" parameterType="com.lotusfan.model.RtBaseinfo" resultMap="rtBaseinfoResultMap">
+	select * from `rt_baseinfo`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="content != null">AND `content` = #{content} </if>
+		<if test="title != null">AND `title` = #{title} </if>
+		<if test="suitableNum != null">AND `suitable_num` = #{suitableNum} </if>
+		<if test="originalPrice != null">AND `original_price` = #{originalPrice} </if>
+		<if test="perConsum != null">AND `per_consum` = #{perConsum} </if>
+		<if test="label != null">AND `label` = #{label} </if>
+		<if test="areaCode != null">AND `area_code` = #{areaCode} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="status != null">AND `status` = #{status} </if>
+		<if test="operator != null">AND `operator` = #{operator} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+		<if test="operatorTime != null">AND `operator_time` = #{operatorTime} </if>
+		<if test="sequence != null">AND `sequence` = #{sequence} </if>
+		<if test="detailUrl != null">AND `detail_url` = #{detailUrl} </if> 
+		<if test="maxParameter != null">AND ${maxParameter} &lt;= #{maxValue}</if>
+		<if test="minParameter != null"> AND ${minParameter} &gt; #{minValue}</if>
+	</trim>
+	<trim prefix="ORDER BY" prefixOverrides="," suffixOverrides=",">
+		<if test="sequence1 != null">${sequence1} ${sequence1Type},</if>
+		<if test="sequence2 != null">${sequence2} ${sequence2Type}</if>
+	</trim>
+	<trim prefix="LIMIT">
+		<if test="skipNum != null and pageNum != null"> ${skipNum},${pageNum}</if>
+	</trim>
+</select>
+<select id="getUniqueBy" parameterType="com.lotusfan.model.RtBaseinfo" resultMap="rtBaseinfoResultMap">
+	select * from `rt_baseinfo`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="content != null">AND `content` = #{content} </if>
+		<if test="title != null">AND `title` = #{title} </if>
+		<if test="suitableNum != null">AND `suitable_num` = #{suitableNum} </if>
+		<if test="originalPrice != null">AND `original_price` = #{originalPrice} </if>
+		<if test="perConsum != null">AND `per_consum` = #{perConsum} </if>
+		<if test="label != null">AND `label` = #{label} </if>
+		<if test="areaCode != null">AND `area_code` = #{areaCode} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="status != null">AND `status` = #{status} </if>
+		<if test="operator != null">AND `operator` = #{operator} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+		<if test="operatorTime != null">AND `operator_time` = #{operatorTime} </if>
+		<if test="sequence != null">AND `sequence` = #{sequence} </if>
+		<if test="detailUrl != null">AND `detail_url` = #{detailUrl} </if>
+	</trim>
+</select>
+<select id="count" parameterType="com.lotusfan.model.RtBaseinfo" resultType="java.lang.Integer">
+	select count(*) from `rt_baseinfo`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="content != null">AND `content` = #{content} </if>
+		<if test="title != null">AND `title` = #{title} </if>
+		<if test="suitableNum != null">AND `suitable_num` = #{suitableNum} </if>
+		<if test="originalPrice != null">AND `original_price` = #{originalPrice} </if>
+		<if test="perConsum != null">AND `per_consum` = #{perConsum} </if>
+		<if test="label != null">AND `label` = #{label} </if>
+		<if test="areaCode != null">AND `area_code` = #{areaCode} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="status != null">AND `status` = #{status} </if>
+		<if test="operator != null">AND `operator` = #{operator} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+		<if test="operatorTime != null">AND `operator_time` = #{operatorTime} </if>
+		<if test="sequence != null">AND `sequence` = #{sequence} </if>
+		<if test="detailUrl != null">AND `detail_url` = #{detailUrl} </if>
+	</trim>
+</select>
+</mapper>

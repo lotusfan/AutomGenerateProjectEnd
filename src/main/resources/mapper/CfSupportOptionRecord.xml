@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lotusfan.dao.CfSupportOptionRecordMapper">
+
+<resultMap id="cfSupportOptionRecordResultMap" type="com.lotusfan.model.CfSupportOptionRecord">
+	<id column="id" property="id"/>
+	<result column="product_id" property="productId" />
+	<result column="no_order" property="noOrder" />
+	<result column="sup_option_id" property="supOptionId" />
+	<result column="support_amount" property="supportAmount" />
+	<result column="user_id" property="userId" />
+	<result column="create_time" property="createTime" />
+	<result column="update_time" property="updateTime" />
+	<result column="recieve_addr" property="recieveAddr" /> 
+</resultMap> 
+<insert id="save" parameterType="com.lotusfan.model.CfSupportOptionRecord" useGeneratedKeys="true" keyProperty="id">
+	insert into `cf_support_option_record`(
+	<trim suffixOverrides=",">
+		<if test="productId != null">`product_id`,</if>
+		<if test="noOrder != null">`no_order`,</if>
+		<if test="supOptionId != null">`sup_option_id`,</if>
+		<if test="supportAmount != null">`support_amount`,</if>
+		<if test="userId != null">`user_id`,</if>
+		<if test="createTime != null">`create_time`,</if>
+		<if test="updateTime != null">`update_time`,</if>
+		<if test="recieveAddr != null">`recieve_addr`,</if>
+	</trim>
+	)values(
+	<trim suffixOverrides=",">
+		<if test="productId != null"> #{productId},</if>
+		<if test="noOrder != null"> #{noOrder},</if>
+		<if test="supOptionId != null"> #{supOptionId},</if>
+		<if test="supportAmount != null"> #{supportAmount},</if>
+		<if test="userId != null"> #{userId},</if>
+		<if test="createTime != null"> #{createTime},</if>
+		<if test="updateTime != null"> #{updateTime},</if>
+		<if test="recieveAddr != null"> #{recieveAddr},</if>
+	</trim>
+	)
+</insert>
+<update id="update" parameterType="com.lotusfan.model.CfSupportOptionRecord">
+	update `cf_support_option_record`
+	<trim prefix="set" suffixOverrides=",">
+		<if test="productId != null">`product_id` = #{productId},</if>
+		<if test="noOrder != null">`no_order` = #{noOrder},</if>
+		<if test="supOptionId != null">`sup_option_id` = #{supOptionId},</if>
+		<if test="supportAmount != null">`support_amount` = #{supportAmount},</if>
+		<if test="userId != null">`user_id` = #{userId},</if>
+		<if test="createTime != null">`create_time` = #{createTime},</if>
+		<if test="updateTime != null">`update_time` = #{updateTime},</if>
+		<if test="recieveAddr != null">`recieve_addr` = #{recieveAddr},</if>
+	</trim>
+	where `id` = #{id}
+</update>
+<select id="getBy" parameterType="com.lotusfan.model.CfSupportOptionRecord" resultMap="cfSupportOptionRecordResultMap">
+	select * from `cf_support_option_record`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="productId != null">AND `product_id` = #{productId} </if>
+		<if test="noOrder != null">AND `no_order` = #{noOrder} </if>
+		<if test="supOptionId != null">AND `sup_option_id` = #{supOptionId} </if>
+		<if test="supportAmount != null">AND `support_amount` = #{supportAmount} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+		<if test="recieveAddr != null">AND `recieve_addr` = #{recieveAddr} </if>
+	</trim>
+</select>
+<select id="getConditionBy" parameterType="com.lotusfan.model.CfSupportOptionRecord" resultMap="cfSupportOptionRecordResultMap">
+	select * from `cf_support_option_record`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="productId != null">AND `product_id` = #{productId} </if>
+		<if test="noOrder != null">AND `no_order` = #{noOrder} </if>
+		<if test="supOptionId != null">AND `sup_option_id` = #{supOptionId} </if>
+		<if test="supportAmount != null">AND `support_amount` = #{supportAmount} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+		<if test="recieveAddr != null">AND `recieve_addr` = #{recieveAddr} </if> 
+		<if test="maxParameter != null">AND ${maxParameter} &lt;= #{maxValue}</if>
+		<if test="minParameter != null"> AND ${minParameter} &gt; #{minValue}</if>
+	</trim>
+	<trim prefix="ORDER BY" prefixOverrides="," suffixOverrides=",">
+		<if test="sequence1 != null">${sequence1} ${sequence1Type},</if>
+		<if test="sequence2 != null">${sequence2} ${sequence2Type}</if>
+	</trim>
+	<trim prefix="LIMIT">
+		<if test="skipNum != null and pageNum != null"> ${skipNum},${pageNum}</if>
+	</trim>
+</select>
+<select id="getUniqueBy" parameterType="com.lotusfan.model.CfSupportOptionRecord" resultMap="cfSupportOptionRecordResultMap">
+	select * from `cf_support_option_record`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="productId != null">AND `product_id` = #{productId} </if>
+		<if test="noOrder != null">AND `no_order` = #{noOrder} </if>
+		<if test="supOptionId != null">AND `sup_option_id` = #{supOptionId} </if>
+		<if test="supportAmount != null">AND `support_amount` = #{supportAmount} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+		<if test="recieveAddr != null">AND `recieve_addr` = #{recieveAddr} </if>
+	</trim>
+</select>
+<select id="count" parameterType="com.lotusfan.model.CfSupportOptionRecord" resultType="java.lang.Integer">
+	select count(*) from `cf_support_option_record`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="productId != null">AND `product_id` = #{productId} </if>
+		<if test="noOrder != null">AND `no_order` = #{noOrder} </if>
+		<if test="supOptionId != null">AND `sup_option_id` = #{supOptionId} </if>
+		<if test="supportAmount != null">AND `support_amount` = #{supportAmount} </if>
+		<if test="userId != null">AND `user_id` = #{userId} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+		<if test="recieveAddr != null">AND `recieve_addr` = #{recieveAddr} </if>
+	</trim>
+</select>
+</mapper>

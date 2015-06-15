@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lotusfan.dao.TauthMapper">
+
+<resultMap id="tauthResultMap" type="com.lotusfan.model.Tauth">
+	<id column="CID" property="CID"/>
+	<result column="CDESC" property="CDESC" />
+	<result column="CNAME" property="CNAME" />
+	<result column="CSEQ" property="CSEQ" />
+	<result column="CURL" property="CURL" />
+	<result column="CPID" property="CPID" /> 
+</resultMap> 
+<insert id="save" parameterType="com.lotusfan.model.Tauth" useGeneratedKeys="true" keyProperty="id">
+	insert into `tauth`(
+	<trim suffixOverrides=",">
+		<if test="CID != null">`CID`,</if>
+		<if test="CDESC != null">`CDESC`,</if>
+		<if test="CNAME != null">`CNAME`,</if>
+		<if test="CSEQ != null">`CSEQ`,</if>
+		<if test="CURL != null">`CURL`,</if>
+		<if test="CPID != null">`CPID`,</if>
+	</trim>
+	)values(
+	<trim suffixOverrides=",">
+		<if test="CID != null"> #{CID},</if>
+		<if test="CDESC != null"> #{CDESC},</if>
+		<if test="CNAME != null"> #{CNAME},</if>
+		<if test="CSEQ != null"> #{CSEQ},</if>
+		<if test="CURL != null"> #{CURL},</if>
+		<if test="CPID != null"> #{CPID},</if>
+	</trim>
+	)
+</insert>
+<update id="update" parameterType="com.lotusfan.model.Tauth">
+	update `tauth`
+	<trim prefix="set" suffixOverrides=",">
+		<if test="CDESC != null">`CDESC` = #{CDESC},</if>
+		<if test="CNAME != null">`CNAME` = #{CNAME},</if>
+		<if test="CSEQ != null">`CSEQ` = #{CSEQ},</if>
+		<if test="CURL != null">`CURL` = #{CURL},</if>
+		<if test="CPID != null">`CPID` = #{CPID},</if>
+	</trim>
+	where `CID` = #{CID}
+</update>
+<select id="getBy" parameterType="com.lotusfan.model.Tauth" resultMap="tauthResultMap">
+	select * from `tauth`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="CID != null">AND `CID` = #{CID} </if>
+		<if test="CDESC != null">AND `CDESC` = #{CDESC} </if>
+		<if test="CNAME != null">AND `CNAME` = #{CNAME} </if>
+		<if test="CSEQ != null">AND `CSEQ` = #{CSEQ} </if>
+		<if test="CURL != null">AND `CURL` = #{CURL} </if>
+		<if test="CPID != null">AND `CPID` = #{CPID} </if>
+	</trim>
+</select>
+<select id="getConditionBy" parameterType="com.lotusfan.model.Tauth" resultMap="tauthResultMap">
+	select * from `tauth`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="CID != null">AND `CID` = #{CID} </if>
+		<if test="CDESC != null">AND `CDESC` = #{CDESC} </if>
+		<if test="CNAME != null">AND `CNAME` = #{CNAME} </if>
+		<if test="CSEQ != null">AND `CSEQ` = #{CSEQ} </if>
+		<if test="CURL != null">AND `CURL` = #{CURL} </if>
+		<if test="CPID != null">AND `CPID` = #{CPID} </if> 
+		<if test="maxParameter != null">AND ${maxParameter} &lt;= #{maxValue}</if>
+		<if test="minParameter != null"> AND ${minParameter} &gt; #{minValue}</if>
+	</trim>
+	<trim prefix="ORDER BY" prefixOverrides="," suffixOverrides=",">
+		<if test="sequence1 != null">${sequence1} ${sequence1Type},</if>
+		<if test="sequence2 != null">${sequence2} ${sequence2Type}</if>
+	</trim>
+	<trim prefix="LIMIT">
+		<if test="skipNum != null and pageNum != null"> ${skipNum},${pageNum}</if>
+	</trim>
+</select>
+<select id="getUniqueBy" parameterType="com.lotusfan.model.Tauth" resultMap="tauthResultMap">
+	select * from `tauth`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="CID != null">AND `CID` = #{CID} </if>
+		<if test="CDESC != null">AND `CDESC` = #{CDESC} </if>
+		<if test="CNAME != null">AND `CNAME` = #{CNAME} </if>
+		<if test="CSEQ != null">AND `CSEQ` = #{CSEQ} </if>
+		<if test="CURL != null">AND `CURL` = #{CURL} </if>
+		<if test="CPID != null">AND `CPID` = #{CPID} </if>
+	</trim>
+</select>
+<select id="count" parameterType="com.lotusfan.model.Tauth" resultType="java.lang.Integer">
+	select count(*) from `tauth`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="CID != null">AND `CID` = #{CID} </if>
+		<if test="CDESC != null">AND `CDESC` = #{CDESC} </if>
+		<if test="CNAME != null">AND `CNAME` = #{CNAME} </if>
+		<if test="CSEQ != null">AND `CSEQ` = #{CSEQ} </if>
+		<if test="CURL != null">AND `CURL` = #{CURL} </if>
+		<if test="CPID != null">AND `CPID` = #{CPID} </if>
+	</trim>
+</select>
+</mapper>

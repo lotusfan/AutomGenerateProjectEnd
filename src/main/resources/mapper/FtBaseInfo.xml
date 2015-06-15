@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lotusfan.dao.FtBaseInfoMapper">
+
+<resultMap id="ftBaseInfoResultMap" type="com.lotusfan.model.FtBaseInfo">
+	<id column="id" property="id"/>
+	<result column="title" property="title" />
+	<result column="label" property="label" />
+	<result column="amount" property="amount" />
+	<result column="address" property="address" />
+	<result column="period" property="period" />
+	<result column="year_profit" property="yearProfit" />
+	<result column="plan_prod" property="planProd" />
+	<result column="profit_deal_md" property="profitDealMd" />
+	<result column="subsc_period" property="subscPeriod" />
+	<result column="subsc_condi" property="subscCondi" />
+	<result column="return_date" property="returnDate" />
+	<result column="value_date" property="valueDate" />
+	<result column="is_early_redeem" property="isEarlyRedeem" />
+	<result column="profit_calc_md" property="profitCalcMd" />
+	<result column="buy_channel" property="buyChannel" />
+	<result column="fee" property="fee" />
+	<result column="invest_fee" property="investFee" />
+	<result column="create_time" property="createTime" />
+	<result column="update_time" property="updateTime" />
+	<result column="tripDoc" property="tripDoc" />
+	<result column="feeDoc" property="feeDoc" />
+	<result column="signDoc" property="signDoc" />
+	<result column="noticeDoc" property="noticeDoc" />
+	<result column="backDoc" property="backDoc" />
+	<result column="kindly_reminder" property="kindlyReminder" />
+	<result column="operator" property="operator" />
+	<result column="status" property="status" />
+	<result column="operator_time" property="operatorTime" /> 
+</resultMap> 
+<insert id="save" parameterType="com.lotusfan.model.FtBaseInfo" useGeneratedKeys="true" keyProperty="id">
+	insert into `ft_base_info`(
+	<trim suffixOverrides=",">
+		<if test="title != null">`title`,</if>
+		<if test="label != null">`label`,</if>
+		<if test="amount != null">`amount`,</if>
+		<if test="address != null">`address`,</if>
+		<if test="period != null">`period`,</if>
+		<if test="yearProfit != null">`year_profit`,</if>
+		<if test="planProd != null">`plan_prod`,</if>
+		<if test="profitDealMd != null">`profit_deal_md`,</if>
+		<if test="subscPeriod != null">`subsc_period`,</if>
+		<if test="subscCondi != null">`subsc_condi`,</if>
+		<if test="returnDate != null">`return_date`,</if>
+		<if test="valueDate != null">`value_date`,</if>
+		<if test="isEarlyRedeem != null">`is_early_redeem`,</if>
+		<if test="profitCalcMd != null">`profit_calc_md`,</if>
+		<if test="buyChannel != null">`buy_channel`,</if>
+		<if test="fee != null">`fee`,</if>
+		<if test="investFee != null">`invest_fee`,</if>
+		<if test="createTime != null">`create_time`,</if>
+		<if test="updateTime != null">`update_time`,</if>
+		<if test="tripDoc != null">`tripDoc`,</if>
+		<if test="feeDoc != null">`feeDoc`,</if>
+		<if test="signDoc != null">`signDoc`,</if>
+		<if test="noticeDoc != null">`noticeDoc`,</if>
+		<if test="backDoc != null">`backDoc`,</if>
+		<if test="kindlyReminder != null">`kindly_reminder`,</if>
+		<if test="operator != null">`operator`,</if>
+		<if test="status != null">`status`,</if>
+		<if test="operatorTime != null">`operator_time`,</if>
+	</trim>
+	)values(
+	<trim suffixOverrides=",">
+		<if test="title != null"> #{title},</if>
+		<if test="label != null"> #{label},</if>
+		<if test="amount != null"> #{amount},</if>
+		<if test="address != null"> #{address},</if>
+		<if test="period != null"> #{period},</if>
+		<if test="yearProfit != null"> #{yearProfit},</if>
+		<if test="planProd != null"> #{planProd},</if>
+		<if test="profitDealMd != null"> #{profitDealMd},</if>
+		<if test="subscPeriod != null"> #{subscPeriod},</if>
+		<if test="subscCondi != null"> #{subscCondi},</if>
+		<if test="returnDate != null"> #{returnDate},</if>
+		<if test="valueDate != null"> #{valueDate},</if>
+		<if test="isEarlyRedeem != null"> #{isEarlyRedeem},</if>
+		<if test="profitCalcMd != null"> #{profitCalcMd},</if>
+		<if test="buyChannel != null"> #{buyChannel},</if>
+		<if test="fee != null"> #{fee},</if>
+		<if test="investFee != null"> #{investFee},</if>
+		<if test="createTime != null"> #{createTime},</if>
+		<if test="updateTime != null"> #{updateTime},</if>
+		<if test="tripDoc != null"> #{tripDoc},</if>
+		<if test="feeDoc != null"> #{feeDoc},</if>
+		<if test="signDoc != null"> #{signDoc},</if>
+		<if test="noticeDoc != null"> #{noticeDoc},</if>
+		<if test="backDoc != null"> #{backDoc},</if>
+		<if test="kindlyReminder != null"> #{kindlyReminder},</if>
+		<if test="operator != null"> #{operator},</if>
+		<if test="status != null"> #{status},</if>
+		<if test="operatorTime != null"> #{operatorTime},</if>
+	</trim>
+	)
+</insert>
+<update id="update" parameterType="com.lotusfan.model.FtBaseInfo">
+	update `ft_base_info`
+	<trim prefix="set" suffixOverrides=",">
+		<if test="title != null">`title` = #{title},</if>
+		<if test="label != null">`label` = #{label},</if>
+		<if test="amount != null">`amount` = #{amount},</if>
+		<if test="address != null">`address` = #{address},</if>
+		<if test="period != null">`period` = #{period},</if>
+		<if test="yearProfit != null">`year_profit` = #{yearProfit},</if>
+		<if test="planProd != null">`plan_prod` = #{planProd},</if>
+		<if test="profitDealMd != null">`profit_deal_md` = #{profitDealMd},</if>
+		<if test="subscPeriod != null">`subsc_period` = #{subscPeriod},</if>
+		<if test="subscCondi != null">`subsc_condi` = #{subscCondi},</if>
+		<if test="returnDate != null">`return_date` = #{returnDate},</if>
+		<if test="valueDate != null">`value_date` = #{valueDate},</if>
+		<if test="isEarlyRedeem != null">`is_early_redeem` = #{isEarlyRedeem},</if>
+		<if test="profitCalcMd != null">`profit_calc_md` = #{profitCalcMd},</if>
+		<if test="buyChannel != null">`buy_channel` = #{buyChannel},</if>
+		<if test="fee != null">`fee` = #{fee},</if>
+		<if test="investFee != null">`invest_fee` = #{investFee},</if>
+		<if test="createTime != null">`create_time` = #{createTime},</if>
+		<if test="updateTime != null">`update_time` = #{updateTime},</if>
+		<if test="tripDoc != null">`tripDoc` = #{tripDoc},</if>
+		<if test="feeDoc != null">`feeDoc` = #{feeDoc},</if>
+		<if test="signDoc != null">`signDoc` = #{signDoc},</if>
+		<if test="noticeDoc != null">`noticeDoc` = #{noticeDoc},</if>
+		<if test="backDoc != null">`backDoc` = #{backDoc},</if>
+		<if test="kindlyReminder != null">`kindly_reminder` = #{kindlyReminder},</if>
+		<if test="operator != null">`operator` = #{operator},</if>
+		<if test="status != null">`status` = #{status},</if>
+		<if test="operatorTime != null">`operator_time` = #{operatorTime},</if>
+	</trim>
+	where `id` = #{id}
+</update>
+<select id="getBy" parameterType="com.lotusfan.model.FtBaseInfo" resultMap="ftBaseInfoResultMap">
+	select * from `ft_base_info`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="title != null">AND `title` = #{title} </if>
+		<if test="label != null">AND `label` = #{label} </if>
+		<if test="amount != null">AND `amount` = #{amount} </if>
+		<if test="address != null">AND `address` = #{address} </if>
+		<if test="period != null">AND `period` = #{period} </if>
+		<if test="yearProfit != null">AND `year_profit` = #{yearProfit} </if>
+		<if test="planProd != null">AND `plan_prod` = #{planProd} </if>
+		<if test="profitDealMd != null">AND `profit_deal_md` = #{profitDealMd} </if>
+		<if test="subscPeriod != null">AND `subsc_period` = #{subscPeriod} </if>
+		<if test="subscCondi != null">AND `subsc_condi` = #{subscCondi} </if>
+		<if test="returnDate != null">AND `return_date` = #{returnDate} </if>
+		<if test="valueDate != null">AND `value_date` = #{valueDate} </if>
+		<if test="isEarlyRedeem != null">AND `is_early_redeem` = #{isEarlyRedeem} </if>
+		<if test="profitCalcMd != null">AND `profit_calc_md` = #{profitCalcMd} </if>
+		<if test="buyChannel != null">AND `buy_channel` = #{buyChannel} </if>
+		<if test="fee != null">AND `fee` = #{fee} </if>
+		<if test="investFee != null">AND `invest_fee` = #{investFee} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+		<if test="tripDoc != null">AND `tripDoc` = #{tripDoc} </if>
+		<if test="feeDoc != null">AND `feeDoc` = #{feeDoc} </if>
+		<if test="signDoc != null">AND `signDoc` = #{signDoc} </if>
+		<if test="noticeDoc != null">AND `noticeDoc` = #{noticeDoc} </if>
+		<if test="backDoc != null">AND `backDoc` = #{backDoc} </if>
+		<if test="kindlyReminder != null">AND `kindly_reminder` = #{kindlyReminder} </if>
+		<if test="operator != null">AND `operator` = #{operator} </if>
+		<if test="status != null">AND `status` = #{status} </if>
+		<if test="operatorTime != null">AND `operator_time` = #{operatorTime} </if>
+	</trim>
+</select>
+<select id="getConditionBy" parameterType="com.lotusfan.model.FtBaseInfo" resultMap="ftBaseInfoResultMap">
+	select * from `ft_base_info`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="title != null">AND `title` = #{title} </if>
+		<if test="label != null">AND `label` = #{label} </if>
+		<if test="amount != null">AND `amount` = #{amount} </if>
+		<if test="address != null">AND `address` = #{address} </if>
+		<if test="period != null">AND `period` = #{period} </if>
+		<if test="yearProfit != null">AND `year_profit` = #{yearProfit} </if>
+		<if test="planProd != null">AND `plan_prod` = #{planProd} </if>
+		<if test="profitDealMd != null">AND `profit_deal_md` = #{profitDealMd} </if>
+		<if test="subscPeriod != null">AND `subsc_period` = #{subscPeriod} </if>
+		<if test="subscCondi != null">AND `subsc_condi` = #{subscCondi} </if>
+		<if test="returnDate != null">AND `return_date` = #{returnDate} </if>
+		<if test="valueDate != null">AND `value_date` = #{valueDate} </if>
+		<if test="isEarlyRedeem != null">AND `is_early_redeem` = #{isEarlyRedeem} </if>
+		<if test="profitCalcMd != null">AND `profit_calc_md` = #{profitCalcMd} </if>
+		<if test="buyChannel != null">AND `buy_channel` = #{buyChannel} </if>
+		<if test="fee != null">AND `fee` = #{fee} </if>
+		<if test="investFee != null">AND `invest_fee` = #{investFee} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+		<if test="tripDoc != null">AND `tripDoc` = #{tripDoc} </if>
+		<if test="feeDoc != null">AND `feeDoc` = #{feeDoc} </if>
+		<if test="signDoc != null">AND `signDoc` = #{signDoc} </if>
+		<if test="noticeDoc != null">AND `noticeDoc` = #{noticeDoc} </if>
+		<if test="backDoc != null">AND `backDoc` = #{backDoc} </if>
+		<if test="kindlyReminder != null">AND `kindly_reminder` = #{kindlyReminder} </if>
+		<if test="operator != null">AND `operator` = #{operator} </if>
+		<if test="status != null">AND `status` = #{status} </if>
+		<if test="operatorTime != null">AND `operator_time` = #{operatorTime} </if> 
+		<if test="maxParameter != null">AND ${maxParameter} &lt;= #{maxValue}</if>
+		<if test="minParameter != null"> AND ${minParameter} &gt; #{minValue}</if>
+	</trim>
+	<trim prefix="ORDER BY" prefixOverrides="," suffixOverrides=",">
+		<if test="sequence1 != null">${sequence1} ${sequence1Type},</if>
+		<if test="sequence2 != null">${sequence2} ${sequence2Type}</if>
+	</trim>
+	<trim prefix="LIMIT">
+		<if test="skipNum != null and pageNum != null"> ${skipNum},${pageNum}</if>
+	</trim>
+</select>
+<select id="getUniqueBy" parameterType="com.lotusfan.model.FtBaseInfo" resultMap="ftBaseInfoResultMap">
+	select * from `ft_base_info`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="id != null">AND `id` = #{id} </if>
+		<if test="title != null">AND `title` = #{title} </if>
+		<if test="label != null">AND `label` = #{label} </if>
+		<if test="amount != null">AND `amount` = #{amount} </if>
+		<if test="address != null">AND `address` = #{address} </if>
+		<if test="period != null">AND `period` = #{period} </if>
+		<if test="yearProfit != null">AND `year_profit` = #{yearProfit} </if>
+		<if test="planProd != null">AND `plan_prod` = #{planProd} </if>
+		<if test="profitDealMd != null">AND `profit_deal_md` = #{profitDealMd} </if>
+		<if test="subscPeriod != null">AND `subsc_period` = #{subscPeriod} </if>
+		<if test="subscCondi != null">AND `subsc_condi` = #{subscCondi} </if>
+		<if test="returnDate != null">AND `return_date` = #{returnDate} </if>
+		<if test="valueDate != null">AND `value_date` = #{valueDate} </if>
+		<if test="isEarlyRedeem != null">AND `is_early_redeem` = #{isEarlyRedeem} </if>
+		<if test="profitCalcMd != null">AND `profit_calc_md` = #{profitCalcMd} </if>
+		<if test="buyChannel != null">AND `buy_channel` = #{buyChannel} </if>
+		<if test="fee != null">AND `fee` = #{fee} </if>
+		<if test="investFee != null">AND `invest_fee` = #{investFee} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+		<if test="tripDoc != null">AND `tripDoc` = #{tripDoc} </if>
+		<if test="feeDoc != null">AND `feeDoc` = #{feeDoc} </if>
+		<if test="signDoc != null">AND `signDoc` = #{signDoc} </if>
+		<if test="noticeDoc != null">AND `noticeDoc` = #{noticeDoc} </if>
+		<if test="backDoc != null">AND `backDoc` = #{backDoc} </if>
+		<if test="kindlyReminder != null">AND `kindly_reminder` = #{kindlyReminder} </if>
+		<if test="operator != null">AND `operator` = #{operator} </if>
+		<if test="status != null">AND `status` = #{status} </if>
+		<if test="operatorTime != null">AND `operator_time` = #{operatorTime} </if>
+	</trim>
+</select>
+<select id="count" parameterType="com.lotusfan.model.FtBaseInfo" resultType="java.lang.Integer">
+	select count(*) from `ft_base_info`
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="title != null">AND `title` = #{title} </if>
+		<if test="label != null">AND `label` = #{label} </if>
+		<if test="amount != null">AND `amount` = #{amount} </if>
+		<if test="address != null">AND `address` = #{address} </if>
+		<if test="period != null">AND `period` = #{period} </if>
+		<if test="yearProfit != null">AND `year_profit` = #{yearProfit} </if>
+		<if test="planProd != null">AND `plan_prod` = #{planProd} </if>
+		<if test="profitDealMd != null">AND `profit_deal_md` = #{profitDealMd} </if>
+		<if test="subscPeriod != null">AND `subsc_period` = #{subscPeriod} </if>
+		<if test="subscCondi != null">AND `subsc_condi` = #{subscCondi} </if>
+		<if test="returnDate != null">AND `return_date` = #{returnDate} </if>
+		<if test="valueDate != null">AND `value_date` = #{valueDate} </if>
+		<if test="isEarlyRedeem != null">AND `is_early_redeem` = #{isEarlyRedeem} </if>
+		<if test="profitCalcMd != null">AND `profit_calc_md` = #{profitCalcMd} </if>
+		<if test="buyChannel != null">AND `buy_channel` = #{buyChannel} </if>
+		<if test="fee != null">AND `fee` = #{fee} </if>
+		<if test="investFee != null">AND `invest_fee` = #{investFee} </if>
+		<if test="createTime != null">AND `create_time` = #{createTime} </if>
+		<if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+		<if test="tripDoc != null">AND `tripDoc` = #{tripDoc} </if>
+		<if test="feeDoc != null">AND `feeDoc` = #{feeDoc} </if>
+		<if test="signDoc != null">AND `signDoc` = #{signDoc} </if>
+		<if test="noticeDoc != null">AND `noticeDoc` = #{noticeDoc} </if>
+		<if test="backDoc != null">AND `backDoc` = #{backDoc} </if>
+		<if test="kindlyReminder != null">AND `kindly_reminder` = #{kindlyReminder} </if>
+		<if test="operator != null">AND `operator` = #{operator} </if>
+		<if test="status != null">AND `status` = #{status} </if>
+		<if test="operatorTime != null">AND `operator_time` = #{operatorTime} </if>
+	</trim>
+</select>
+</mapper>
