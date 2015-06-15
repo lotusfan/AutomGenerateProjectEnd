@@ -7,8 +7,10 @@ SpringMVC + MyBatis + Maven 的一个自动生成框架
 MainThread是项目的入口main类。里面有一些可配置的参数已经加注解了，应该很容易理解。这里只说一个自己定义的包packageNameYourself
 这个变量其实就是com级下的一个包名，且整个项目只有这一个包名是可以自定义的，其它都是定义好的，具体效果可以看一下loutsfan这个就
 是我自定义的。
+
 MainUtil类里的方法是把数据库里的变量名，表名去解析为java类可用的名。
 其它类都是按结构一一对应的生成每部分内容。
+
 生成内容：
 生成项目里 有MyBatis  XML配置文件，Dao层接口， Service里的事务控制类， Action里的一个查看类据库信息类。JSP  Js（待完善）
 还有一些Spring    MyBatis   log  web.xml， pom.xml 配置文件。
